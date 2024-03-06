@@ -19,10 +19,11 @@ const Create = () => {
 
   const submitData=(e)=>{
       firebase.storage().ref(`/image/${image.name}`).put(image).then(({ref})=>{
+        console.log(ref);
         ref.getDownloadURL().then((url)=>{
           console.log(url);
           firebase.firestore().collection('products').add({
-            name,
+            product_name:name,
             category,
             price,
             url,

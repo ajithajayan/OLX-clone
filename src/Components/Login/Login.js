@@ -4,6 +4,7 @@ import Logo from '../../olx-logo.png';
 import './Login.css';
 import { FirebaseContext } from '../../store/FirebaseContext';
 
+
 function Login() {
   const [email, setemail] = useState('')
   const [password, setpassword] = useState('')
@@ -51,6 +52,7 @@ function Login() {
           <button>Login</button>
         </form>
         <a href='/signup'>Signup</a>
+        
       </div>
     </div>
   );

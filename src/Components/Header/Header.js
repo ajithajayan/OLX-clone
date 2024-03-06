@@ -1,15 +1,23 @@
-import React, { useContext } from 'react';
+import React, { useContext } from "react";
 
-import './Header.css';
-import OlxLogo from '../../assets/OlxLogo';
-import Search from '../../assets/Search';
-import Arrow from '../../assets/Arrow';
-import SellButton from '../../assets/SellButton';
-import SellButtonPlus from '../../assets/SellButtonPlus';
-import { AuthContext } from '../../store/FirebaseContext';
+import "./Header.css";
+import OlxLogo from "../../assets/OlxLogo";
+import Search from "../../assets/Search";
+import Arrow from "../../assets/Arrow";
+import SellButton from "../../assets/SellButton";
+import SellButtonPlus from "../../assets/SellButtonPlus";
+import { FirebaseContext } from "../../store/FirebaseContext";
+import {useNavigate} from 'react-router-dom'
+
 function Header() {
+  const { firebase } = useContext(FirebaseContext);
+  const user = firebase.auth().currentUser;
+  const navigate = useNavigate()
 
-  const {user} = useContext(AuthContext)
+  const handleLogout = () => {
+    firebase.auth().signOut();
+  };
+
   return (
     <div className="headerParentDiv">
       <div className="headerChildDiv">
@@ -37,7 +45,11 @@ function Header() {
           <Arrow></Arrow>
         </div>
         <div className="loginPage">
-            <span>{ user? user.displayName:"Login"}</span> 
+          <span style={{ display: "inline-block" }}>
+            {user ? user.displayName : <button onClick={()=>{navigate('/login')}}>log In</button> }
+          </span>
+          {user && <button onClick={handleLogout} style={{ display: "inline-block", marginLeft: 10 }}>Logout</button>}
+
           <hr />
         </div>
 

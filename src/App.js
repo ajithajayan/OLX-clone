@@ -5,10 +5,11 @@ import SignupPage from './Pages/Signup';
 import LoginPage from './Pages/Login';
 import Create from './Pages/Create'
 import View from './Pages/ViewPost'
-import {BrowserRouter as Router, Routes, Route} from 'react-router-dom'
+import {Routes, Route,useNavigate } from 'react-router-dom'
 import { AuthContext, FirebaseContext,Post} from './store/FirebaseContext';
 
 function App() {
+  const navigate =useNavigate ()
   const { setUser } = useContext(AuthContext)
   const { firebase } = useContext(FirebaseContext)
   useEffect(() => {
@@ -18,8 +19,9 @@ function App() {
   })
   return (
     <div>̥̥
-      <Router>
+      
         <Post>
+          
         <Routes>
           <Route path='/' element={<Home />} />
           <Route path='/signup' element={<SignupPage />} />
@@ -28,7 +30,7 @@ function App() {
           <Route path='/view' element={<View />} />
         </Routes>
         </Post>
-      </Router>
+      
     </div>
   );
 }

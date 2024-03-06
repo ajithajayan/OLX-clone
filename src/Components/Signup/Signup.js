@@ -25,7 +25,7 @@ export default function Signup() {
             navigate('/login')
         }).catch((e)=>{console.log(e);})
       })
-    })
+    }).catch((e)=>{console.log(e);})
   }
 
 
